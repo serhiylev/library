@@ -1,6 +1,7 @@
 package com.softserve.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Order {
 
@@ -48,6 +49,23 @@ public class Order {
 
     public void setDate_of_return(Date date_of_return) {
         this.date_of_return = date_of_return;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id.equals(order.id) &&
+                id_reader.equals(order.id_reader) &&
+                id_book.equals(order.id_book) &&
+                date_of_issuance.equals(order.date_of_issuance) &&
+                Objects.equals(date_of_return, order.date_of_return);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, id_reader, id_book);
     }
 
     @Override
