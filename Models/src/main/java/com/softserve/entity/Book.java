@@ -1,6 +1,7 @@
 package com.softserve.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Book implements Serializable {
 
@@ -39,6 +40,21 @@ public class Book implements Serializable {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id.equals(book.id) &&
+                name.equals(book.name) &&
+                releaseDate.equals(book.releaseDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, releaseDate);
     }
 
     @Override
