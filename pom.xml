@@ -6,7 +6,14 @@
 
     <groupId>com.softserve</groupId>
     <artifactId>library</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>Models</module>
+        <module>JDBC</module>
+        <module>Services</module>
+        <module>Servlets</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
