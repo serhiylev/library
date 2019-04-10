@@ -1,13 +1,15 @@
 package com.softserve.entity;
 
 import java.io.Serializable;
+
+import java.sql.Date;
 import java.util.Objects;
 
 public class Book implements Serializable {
 
     private Integer id;
     private String name;
-    private String releaseDate;
+    private Date releaseDate;
     private boolean available;
 
     public Integer getId() {
@@ -26,11 +28,11 @@ public class Book implements Serializable {
         this.name = name;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
