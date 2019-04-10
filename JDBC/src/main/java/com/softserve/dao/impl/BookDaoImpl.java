@@ -1,7 +1,6 @@
 package com.softserve.dao.impl;
 
 import com.softserve.dao.BookDao;
-import com.softserve.entity.Book;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
