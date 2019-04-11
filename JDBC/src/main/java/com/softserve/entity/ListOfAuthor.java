@@ -1,6 +1,6 @@
 package com.softserve.entity;
 
-public class List_of_authors {
+public class ListOfAuthor {
 
     private Integer id;
     private Integer id_author;
@@ -41,7 +41,7 @@ public class List_of_authors {
 
     @Override
     public String toString() {
-        return "List_of_authors{" +
+        return "ListOfAuthor{" +
                 "id=" + id +
                 ", id_author=" + id_author +
                 ", book_id=" + book_id +
