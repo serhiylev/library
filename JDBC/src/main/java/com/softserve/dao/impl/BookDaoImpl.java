@@ -37,7 +37,6 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.executeUpdate();
             preparedStatement.close();
             System.out.println("Element added");
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

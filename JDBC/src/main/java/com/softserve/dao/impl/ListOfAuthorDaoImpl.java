@@ -35,7 +35,6 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
             preparedStatement.executeUpdate();
             preparedStatement.close();
             System.out.println("Element added");
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

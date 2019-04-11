@@ -20,7 +20,6 @@ public class ReaderDaoImpl implements ReaderDao {
         try {
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
