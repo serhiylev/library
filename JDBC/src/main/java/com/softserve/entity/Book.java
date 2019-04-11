@@ -10,7 +10,7 @@ public class Book implements Serializable {
     private Integer id;
     private String name;
     private Date releaseDate;
-    private boolean available;
+    private Boolean available;
 
     public Integer getId() {
         return id;

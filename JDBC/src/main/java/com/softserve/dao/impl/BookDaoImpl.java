@@ -33,13 +33,15 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void createBook(Book book) {
-        try {
+
+        try{
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (ID,NAME,RELEASE_DATA,AVAILABLE) VALUES (NULL,?,?,?)");
-            preparedStatement.setString(1,book.getName());
-            preparedStatement.setDate(2,book.getReleaseDate());
-            preparedStatement.setBoolean(3,book.isAvailable());
+            preparedStatement.setString(1, book.getName());
+            preparedStatement.setDate(2, book.getReleaseDate());
+            preparedStatement.setBoolean(3, book.isAvailable());
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,12 +51,12 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> retrieveAllBooks() {
         List<Book> books = new LinkedList<>();
-        try{
+        try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM books");
 
-            Book book = null;
-            while(resultSet.next()){
+            Book book;
+            while (resultSet.next()) {
                 book = new Book();
                 book.setId(resultSet.getInt("ID"));
                 book.setName(resultSet.getString("NAME"));
@@ -72,16 +74,45 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book retrieveBook(int id) {
-        return null;
+        List<Book> books = retrieveAllBooks();
+        Book book = null;
+        for (Book b : books) {
+            if (b.getId() == id) {
+                book = b;
+                break;
+            }
+        }
+        return book;
     }
 
     @Override
     public void updateBook(Book book) {
-
+        String sql = "update books set NAME = ?, RELEASE_DATE = ?, AVAILABLE = ? where ID = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, book.getName());
+            preparedStatement.setDate(2, book.getReleaseDate());
+            preparedStatement.setBoolean(3, book.isAvailable());
+            preparedStatement.setInt(4, book.getId());
+            preparedStatement.executeUpdate();
+            System.out.println("Database updated successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteBook(Book book) {
+        String sql = "delete from books where ID = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,book.getId());
+            preparedStatement.executeUpdate();
+            System.out.println("Record deleted successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
