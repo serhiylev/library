@@ -8,6 +8,9 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        boolean [] array = new boolean[1];
+        if (array[0]) {
+            System.out.println("hello");
+        }
     }
 }
