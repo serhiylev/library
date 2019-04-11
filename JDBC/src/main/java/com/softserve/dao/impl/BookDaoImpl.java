@@ -4,19 +4,20 @@ import com.softserve.dao.BookDao;
 import com.softserve.entity.Book;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class BookDaoImpl implements BookDao {
     public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
-    Connection connection;
 
-    public BookDaoImpl() {
-        connection = null;
+    private Connection connection;
 
+    public BookDaoImpl(){
+        getConnection();
+    }
+
+    private void getConnection(){
         try {
-            //Class.forName(DB_DRIVER);
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
 
@@ -28,6 +29,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public void createBook(Book book) {
         try {
+            getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO book (ID,NAME,RELEASE_DATE,AVAILABLE) VALUES (NULL,?,?,?)");
             preparedStatement.setString(1, book.getName());
             preparedStatement.setDate(2, book.getReleaseDate());
@@ -35,11 +37,11 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.executeUpdate();
             preparedStatement.close();
             System.out.println("Element added");
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public List<Book> retrieveAllBooks() {
@@ -68,8 +70,9 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book retrieveBook(int id) {
-        List<Book> books = retrieveAllBooks();
         Book book = null;
+        List<Book> books = retrieveAllBooks();
+        getConnection();
         for (Book b : books) {
             if (b.getId() == id) {
                 book = b;
@@ -103,6 +106,7 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.setString(1, book.getName());
             preparedStatement.executeUpdate();
             System.out.println("Record deleted successfully");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

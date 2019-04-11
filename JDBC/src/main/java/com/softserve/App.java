@@ -21,7 +21,7 @@ public class App {
         /*bookTemplate = new Book();
         NewDate date = new NewDate(2017,0,14);
         bookTemplate.setId(5);
-        bookTemplate.setName("MyBook");
+        bookTemplate.setName("My life");
         bookTemplate.setReleaseDate(date);
         bookTemplate.setAvailable(true);
 
