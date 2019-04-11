@@ -1,17 +1,17 @@
 package com.softserve.dao.impl;
 
-import com.softserve.dao.AuthorDao;
-import com.softserve.entity.Author;
+import com.softserve.dao.ReaderDao;
+import com.softserve.entity.Reader;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AuthorDaoImpl implements AuthorDao {
+public class ReaderDaoImpl implements ReaderDao {
     public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
     Connection connection;
 
-    public AuthorDaoImpl() {
+    public ReaderDaoImpl() {
         connection = null;
 
         try {
@@ -24,13 +24,14 @@ public class AuthorDaoImpl implements AuthorDao {
         }
     }
 
+
     @Override
-    public void createAuthor(Author author) {
+    public void createReader(Reader reader) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO author (ID,FIRSTNAME,LASTNAME,AGE) VALUES (NULL,?,?,?)");
-            preparedStatement.setString(1, author.getFirstName());
-            preparedStatement.setString(2, author.getLastName());
-            preparedStatement.setInt(3, author.getAge());
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO reader (ID,FIRSTNAME,LASTNAME,AGE) VALUES (NULL,?,?,?)");
+            preparedStatement.setString(1, reader.getFirstName());
+            preparedStatement.setString(2, reader.getLastName());
+            preparedStatement.setInt(3, reader.getAge());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
@@ -42,19 +43,19 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public List<Author> retrieveAllAuthors() {
-        List<Author> authors = new LinkedList<>();
+    public List<Reader> retrieveAllReaders() {
+        List<Reader> readers = new LinkedList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM author");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM reader");
 
-            Author author;
+            Reader reader;
             while (resultSet.next()) {
-                author = new Author();
-                author.setId(resultSet.getInt("ID"));
-                author.setFirstName(resultSet.getString("FIRSTNAME"));
-                author.setLastName(resultSet.getString("LASTNAME"));
-                author.setAge(resultSet.getInt("AGE"));
+                reader = new Reader();
+                reader.setId(resultSet.getInt("ID"));
+                reader.setFirstName(resultSet.getString("FIRSTNAME"));
+                reader.setLastName(resultSet.getString("LASTNAME"));
+                reader.setAge(resultSet.getInt("AGE"));
             }
             resultSet.close();
             statement.close();
@@ -62,31 +63,31 @@ public class AuthorDaoImpl implements AuthorDao {
             e.printStackTrace();
         }
 
-        return authors;
+        return readers;
     }
 
     @Override
-    public Author retrieveAuthor(int id) {
-        List<Author> authors = retrieveAllAuthors();
-        Author author = null;
-        for (Author b : authors) {
+    public Reader retrieveReader(int id) {
+        List<Reader> readers = retrieveAllReaders();
+        Reader reader = null;
+        for (Reader b : readers) {
             if (b.getId() == id) {
-                author = b;
+                reader = b;
                 break;
             }
         }
-        return author;
+        return reader;
     }
 
     @Override
-    public void updateAuthor(Author author) {
-        String sql = "update author set FIRSTNAME = ?, LASTNAME = ?, AGE = ? where ID = ?";
+    public void updateReader(Reader reader) {
+        String sql = "update reader set FIRSTNAME = ?, LASTNAME = ?, AGE = ? where ID = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, author.getFirstName());
-            preparedStatement.setString(2, author.getLastName());
-            preparedStatement.setInt(3, author.getAge());
-            preparedStatement.setInt(4, author.getId());
+            preparedStatement.setString(1, reader.getFirstName());
+            preparedStatement.setString(2, reader.getLastName());
+            preparedStatement.setInt(3, reader.getAge());
+            preparedStatement.setInt(4, reader.getId());
             preparedStatement.executeUpdate();
             System.out.println("Database updated successfully");
         } catch (SQLException e) {
@@ -95,11 +96,11 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public void deleteAuthor(Author author) {
-        String sql = "delete from author where ID = ?";
+    public void deleteReader(Reader reader) {
+        String sql = "delete from reader where ID = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, author.getId());
+            preparedStatement.setInt(1, reader.getId());
             preparedStatement.executeUpdate();
             System.out.println("Record deleted successfully");
         } catch (SQLException e) {

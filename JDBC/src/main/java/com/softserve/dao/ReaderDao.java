@@ -5,13 +5,13 @@ import com.softserve.entity.Reader;
 import java.util.List;
 
 public interface ReaderDao {
-    void createBook(Reader reader);
+    void createReader(Reader reader);
 
-    List<Reader> retrieveAllBooks();
+    List<Reader> retrieveAllReaders();
 
-    Reader retrieveBook(int id);
+    Reader retrieveReader(int id);
 
-    void updateBook(Reader reader);
+    void updateReader(Reader reader);
 
-    void deleteBook(Reader reader);
+    void deleteReader(Reader reader);
 }
