@@ -10,39 +10,35 @@ import java.util.List;
 
 public class BookDaoImpl implements BookDao {
     public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
-    public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+    //public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     List<Book> books;
     Connection connection;
 
     public BookDaoImpl() {
         books = new ArrayList<>();
         connection = null;
-    }
 
-    public Connection getConnection() {
         try {
-            Class.forName(DB_DRIVER);
+            //Class.forName(DB_DRIVER);
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return connection;
     }
 
     @Override
     public void createBook(Book book) {
-
         try{
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (ID,NAME,RELEASE_DATA,AVAILABLE) VALUES (NULL,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO book (ID,NAME,RELEASE_DATA,AVAILABLE) VALUES (NULL,?,?,?)");
+            //preparedStatement.setInt(1, book.getId());
             preparedStatement.setString(1, book.getName());
             preparedStatement.setDate(2, book.getReleaseDate());
             preparedStatement.setBoolean(3, book.isAvailable());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
-
+            System.out.println("Element added");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -53,7 +49,7 @@ public class BookDaoImpl implements BookDao {
         List<Book> books = new LinkedList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM books");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM book");
 
             Book book;
             while (resultSet.next()) {
@@ -87,7 +83,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void updateBook(Book book) {
-        String sql = "update books set NAME = ?, RELEASE_DATE = ?, AVAILABLE = ? where ID = ?";
+        String sql = "update book set NAME = ?, RELEASE_DATE = ?, AVAILABLE = ? where ID = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, book.getName());
@@ -103,7 +99,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void deleteBook(Book book) {
-        String sql = "delete from books where ID = ?";
+        String sql = "delete from book where ID = ?";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,book.getId());
@@ -112,7 +108,5 @@ public class BookDaoImpl implements BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 }
