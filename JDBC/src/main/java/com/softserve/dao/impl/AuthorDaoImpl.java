@@ -4,25 +4,28 @@ import com.softserve.dao.AuthorDao;
 import com.softserve.entity.Author;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class AuthorDaoImpl implements AuthorDao {
     public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
-    public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+    //public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     List<Author> authors;
     Connection connection;
 
-    public Connection getConnection() {
+    public AuthorDaoImpl() {
+        books = new ArrayList<>();
+        connection = null;
+
         try {
-            Class.forName(DB_DRIVER);
+            //Class.forName(DB_DRIVER);
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return connection;
     }
 
     @Override
