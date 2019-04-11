@@ -10,12 +10,9 @@ import java.util.List;
 
 public class BookDaoImpl implements BookDao {
     public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
-    //public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-    List<Book> books;
     Connection connection;
 
     public BookDaoImpl() {
-        books = new ArrayList<>();
         connection = null;
 
         try {
