@@ -17,9 +17,6 @@ public class BookDaoImpl implements BookDao {
     public BookDaoImpl() {
         books = new ArrayList<>();
         connection = null;
-    }
-
-    public Connection getConnection() {
         try {
             Class.forName(DB_DRIVER);
             if (connection == null)
@@ -28,7 +25,6 @@ public class BookDaoImpl implements BookDao {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return connection;
     }
 
     @Override
@@ -53,7 +49,7 @@ public class BookDaoImpl implements BookDao {
         List<Book> books = new LinkedList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM books");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM book");
 
             Book book;
             while (resultSet.next()) {

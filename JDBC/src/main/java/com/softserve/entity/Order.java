@@ -1,6 +1,6 @@
 package com.softserve.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 public class Order {
@@ -36,7 +36,7 @@ public class Order {
     }
 
     public Date getDate_of_issuance() {
-        return date_of_issuance;
+        return  date_of_issuance;
     }
 
     public void setDate_of_issuance(Date date_of_issuance) {
