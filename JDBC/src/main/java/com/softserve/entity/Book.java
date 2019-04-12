@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Book implements Serializable {
+public class Book  {
 
     private Integer id;
     private String name;

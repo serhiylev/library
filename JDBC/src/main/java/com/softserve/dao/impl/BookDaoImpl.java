@@ -4,41 +4,39 @@ import com.softserve.dao.BookDao;
 import com.softserve.entity.Book;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class BookDaoImpl implements BookDao {
-    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
-    public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-    List<Book> books;
-    Connection connection;
+    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=admin";
 
-    public BookDaoImpl() {
-        books = new ArrayList<>();
-        connection = null;
+    private Connection connection;
+
+    public BookDaoImpl(){
+        getConnection();
+    }
+
+    private void getConnection(){
         try {
-            Class.forName(DB_DRIVER);
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void createBook(Book book) {
-
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (ID,NAME,RELEASE_DATA,AVAILABLE) VALUES (NULL,?,?,?)");
+        try {
+            getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO book (ID,NAME,RELEASE_DATE,AVAILABLE) VALUES (NULL,?,?,?)");
             preparedStatement.setString(1, book.getName());
             preparedStatement.setDate(2, book.getReleaseDate());
             preparedStatement.setBoolean(3, book.isAvailable());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
-
+            System.out.println("Element added");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,20 +56,22 @@ public class BookDaoImpl implements BookDao {
                 book.setName(resultSet.getString("NAME"));
                 book.setReleaseDate(resultSet.getDate("RELEASE_DATE"));
                 book.setAvailable(resultSet.getBoolean("AVAILABLE"));
+                books.add(book);
             }
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(books);
+
         return books;
     }
 
     @Override
     public Book retrieveBook(int id) {
-        List<Book> books = retrieveAllBooks();
         Book book = null;
+        List<Book> books = retrieveAllBooks();
+        getConnection();
         for (Book b : books) {
             if (b.getId() == id) {
                 book = b;
@@ -83,7 +83,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void updateBook(Book book) {
-        String sql = "update books set NAME = ?, RELEASE_DATE = ?, AVAILABLE = ? where ID = ?";
+        String sql = "update book set NAME = ?, RELEASE_DATE = ?, AVAILABLE = ? where ID = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, book.getName());
@@ -99,16 +99,15 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void deleteBook(Book book) {
-        String sql = "delete from books where ID = ?";
-        try{
+        String sql = "delete from book where NAME = ?";
+        try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,book.getId());
+            preparedStatement.setString(1, book.getName());
             preparedStatement.executeUpdate();
             System.out.println("Record deleted successfully");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 }
