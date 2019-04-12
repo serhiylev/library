@@ -8,11 +8,11 @@ public interface ListOfAuthorDao {
 
     void createListOfAuthor(ListOfAuthor listOfAuthor);
 
-    List<ListOfAuthor> retrieveAllBooks();
+    List<ListOfAuthor> retrieveAllListOfAuthor();
 
-    ListOfAuthor retrieveBook(int id);
+    ListOfAuthor retrieveListOfAuthor(int id);
 
-    void updateBook(ListOfAuthor listOfAuthor);
+    void updateListOfAuthor(ListOfAuthor listOfAuthor);
 
-    void deleteBook(ListOfAuthor listOfAuthor);
+    void deleteListOfAuthor(ListOfAuthor listOfAuthor);
 }

@@ -41,6 +41,26 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
     }
 
     @Override
+    public List<ListOfAuthor> retrieveAllListOfAuthor() {
+        return null;
+    }
+
+    @Override
+    public ListOfAuthor retrieveListOfAuthor(int id) {
+        return null;
+    }
+
+    @Override
+    public void updateListOfAuthor(ListOfAuthor listOfAuthor) {
+
+    }
+
+    @Override
+    public void deleteListOfAuthor(ListOfAuthor listOfAuthor) {
+
+    }
+
+    @Override
     public List<ListOfAuthor> retrieveAllBooks() {
         List<ListOfAuthor> listOfAuthors = new LinkedList<>();
         try {
