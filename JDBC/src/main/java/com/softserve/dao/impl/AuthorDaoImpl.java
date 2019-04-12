@@ -13,9 +13,11 @@ public class AuthorDaoImpl implements AuthorDao {
 
     public AuthorDaoImpl() {
         connection = null;
+        getConnection();
+    }
 
+    public void getConnection(){
         try {
-            //Class.forName(DB_DRIVER);
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
 
@@ -33,7 +35,6 @@ public class AuthorDaoImpl implements AuthorDao {
             preparedStatement.setInt(3, author.getAge());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
             System.out.println("Element added");
 
         } catch (SQLException e) {

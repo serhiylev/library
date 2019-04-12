@@ -13,17 +13,17 @@ public class ReaderDaoImpl implements ReaderDao {
 
     public ReaderDaoImpl() {
         connection = null;
+        getConnection();
+    }
 
+    public void getConnection(){
         try {
-            //Class.forName(DB_DRIVER);
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void createReader(Reader reader) {
@@ -34,7 +34,6 @@ public class ReaderDaoImpl implements ReaderDao {
             preparedStatement.setInt(3, reader.getAge());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
             System.out.println("Element added");
 
         } catch (SQLException e) {
@@ -89,7 +88,7 @@ public class ReaderDaoImpl implements ReaderDao {
             preparedStatement.setInt(3, reader.getAge());
             preparedStatement.setInt(4, reader.getId());
             preparedStatement.executeUpdate();
-            System.out.println("Database updated successfully");
+            System.out.println("Database updated");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,7 +101,7 @@ public class ReaderDaoImpl implements ReaderDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, reader.getId());
             preparedStatement.executeUpdate();
-            System.out.println("Record deleted successfully");
+            System.out.println("Record deleted");
         } catch (SQLException e) {
             e.printStackTrace();
         }
