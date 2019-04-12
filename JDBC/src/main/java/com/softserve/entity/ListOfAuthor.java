@@ -3,8 +3,8 @@ package com.softserve.entity;
 public class ListOfAuthor {
 
     private Integer id;
-    private Integer id_author;
-    private Integer book_id;
+    private Author author;
+    private Book book;
     private Integer main_author;
 
     public Integer getId() {
@@ -15,20 +15,20 @@ public class ListOfAuthor {
         this.id = id;
     }
 
-    public Integer getId_author() {
-        return id_author;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setId_author(Integer id_author) {
-        this.id_author = id_author;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
-    public Integer getBook_id() {
-        return book_id;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBook_id(Integer book_id) {
-        this.book_id = book_id;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public Integer getMain_author() {
@@ -39,13 +39,5 @@ public class ListOfAuthor {
         this.main_author = main_author;
     }
 
-    @Override
-    public String toString() {
-        return "ListOfAuthor{" +
-                "id=" + id +
-                ", id_author=" + id_author +
-                ", book_id=" + book_id +
-                ", main_author=" + main_author +
-                '}';
-    }
+
 }
