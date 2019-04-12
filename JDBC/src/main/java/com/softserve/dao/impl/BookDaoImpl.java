@@ -12,10 +12,6 @@ public class BookDaoImpl implements BookDao {
 
     private Connection connection;
 
-    public BookDaoImpl(){
-        getConnection();
-    }
-
     private void getConnection(){
         try {
             if (connection == null)
