@@ -2,17 +2,18 @@ package com.softserve.dao;
 
 import com.softserve.entity.ListOfAuthor;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ListOfAuthorDao {
 
-    void createListOfAuthor(ListOfAuthor listOfAuthor);
+    void createListOfAuthor(ListOfAuthor listOfAuthor) throws SQLException;
 
-    List<ListOfAuthor> retrieveAllBooks();
+    List<ListOfAuthor> retrieveAllListOfAuthor() throws SQLException;
 
-    ListOfAuthor retrieveBook(int id);
+    ListOfAuthor retrieveListOfAuthor(int id) throws SQLException;
 
-    void updateBook(ListOfAuthor listOfAuthor);
+    void updateListOfAuthor(ListOfAuthor listOfAuthor) throws SQLException;
 
-    void deleteBook(ListOfAuthor listOfAuthor);
+    void deleteListOfAuthor(ListOfAuthor listOfAuthor);
 }

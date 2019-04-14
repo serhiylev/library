@@ -11,11 +11,6 @@ public class AuthorDaoImpl implements AuthorDao {
     public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
     Connection connection;
 
-    public AuthorDaoImpl() {
-        connection = null;
-        getConnection();
-    }
-
     public void getConnection(){
         try {
             if (connection == null)

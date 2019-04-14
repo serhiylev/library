@@ -1,5 +1,7 @@
 package com.softserve.entity;
 
+import com.softserve.addition.NewDate;
+
 import java.sql.Date;
 import java.util.Objects;
 
@@ -11,45 +13,7 @@ public class Order {
     private Date date_of_issuance;
     private Date date_of_return;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getDate_of_issuance() {
-        return date_of_issuance;
-    }
-
-    public void setDate_of_issuance(Date date_of_issuance) {
-        this.date_of_issuance = date_of_issuance;
-    }
-
-    public Date getDate_of_return() {
-        return date_of_return;
-    }
-
-    public void setDate_of_return(Date date_of_return) {
-        this.date_of_return = date_of_return;
-    }
-
-    public Reader getReader() {
-        return reader;
-    }
-
-    public void setReader(Reader reader) {
-        this.reader = reader;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
 
     @Override
     public boolean equals(Object o) {
