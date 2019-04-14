@@ -24,15 +24,22 @@ public class ReaderDaoImpl implements ReaderDao {
     @Override
     public void createReader(Reader reader) {
         try {
+            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO reader (ID,FIRSTNAME,LASTNAME,AGE) VALUES (NULL,?,?,?)");
             preparedStatement.setString(1, reader.getFirstName());
             preparedStatement.setString(2, reader.getLastName());
             preparedStatement.setInt(3, reader.getAge());
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            connection.commit();
             System.out.println("Element added");
 
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("Connection error!");
+            }
             e.printStackTrace();
         }
     }
@@ -41,6 +48,7 @@ public class ReaderDaoImpl implements ReaderDao {
     public List<Reader> retrieveAllReaders() {
         List<Reader> readers = new LinkedList<>();
         try {
+            connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM reader");
 
@@ -54,7 +62,13 @@ public class ReaderDaoImpl implements ReaderDao {
             }
             resultSet.close();
             statement.close();
+            connection.commit();
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("Connection error!");
+            }
             e.printStackTrace();
         }
 
@@ -78,14 +92,21 @@ public class ReaderDaoImpl implements ReaderDao {
     public void updateReader(Reader reader) {
         String sql = "update reader set FIRSTNAME = ?, LASTNAME = ?, AGE = ? where ID = ?";
         try {
+            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, reader.getFirstName());
             preparedStatement.setString(2, reader.getLastName());
             preparedStatement.setInt(3, reader.getAge());
             preparedStatement.setInt(4, reader.getId());
             preparedStatement.executeUpdate();
+            connection.commit();
             System.out.println("Database updated");
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("Connection error!");
+            }
             e.printStackTrace();
         }
     }
@@ -94,11 +115,18 @@ public class ReaderDaoImpl implements ReaderDao {
     public void deleteReader(Reader reader) {
         String sql = "delete from reader where ID = ?";
         try {
+            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, reader.getId());
             preparedStatement.executeUpdate();
             System.out.println("Record deleted");
+            connection.commit();
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("Connection error!");
+            }
             e.printStackTrace();
         }
     }

@@ -11,11 +11,11 @@ import static org.junit.Assert.*;
 
 public class ListOfAuthorDaoImplTest {
 
-   /* @Test
+    @Test
     public void createListOfAuthor() {
         ListOfAuthor listOfAuthor = new ListOfAuthor();
         listOfAuthor.setId(1);
-        listOfAuthor.setBook_id(3);
+        listOfAuthor.;
         listOfAuthor.setId_author(4);
         listOfAuthor.setMain_author(1);
         ListOfAuthorDao listOfAuthorDao = new ListOfAuthorDaoImpl();
@@ -61,5 +61,5 @@ public class ListOfAuthorDaoImplTest {
 
         ListOfAuthorDao listOfAuthorDao = new ListOfAuthorDaoImpl();
         listOfAuthorDao.deleteBook(listOfAuthor);
-    }*/
+    }
 }
