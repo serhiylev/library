@@ -2,16 +2,15 @@ package com.softserve.entity;
 
 import com.softserve.addition.NewDate;
 
-import java.sql.Date;
 import java.util.Objects;
 
 public class Order {
 
     private Integer id;
-    private Integer id_reader;
-    private Integer id_book;
-    private NewDate date_of_issuance;
-    private NewDate date_of_return;
+    private Reader reader;
+    private Book book;
+    private NewDate dateOfIssuance;
+    private NewDate dateOfReturn;
 
     public Integer getId() {
         return id;
@@ -21,36 +20,36 @@ public class Order {
         this.id = id;
     }
 
-    public Integer getId_reader() {
-        return id_reader;
+    public Reader getReader() {
+        return reader;
     }
 
-    public void setId_reader(Integer id_reader) {
-        this.id_reader = id_reader;
+    public void setReader(Reader reader) {
+        this.reader = reader;
     }
 
-    public Integer getId_book() {
-        return id_book;
+    public Book getBook() {
+        return book;
     }
 
-    public void setId_book(Integer id_book) {
-        this.id_book = id_book;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public NewDate getDate_of_issuance() {
-        return  date_of_issuance;
+    public NewDate getDateOfIssuance() {
+        return dateOfIssuance;
     }
 
-    public void setDate_of_issuance(NewDate date_of_issuance) {
-        this.date_of_issuance = date_of_issuance;
+    public void setDateOfIssuance(NewDate dateOfIssuance) {
+        this.dateOfIssuance = dateOfIssuance;
     }
 
-    public NewDate getDate_of_return() {
-        return date_of_return;
+    public NewDate getDateOfReturn() {
+        return dateOfReturn;
     }
 
-    public void setDate_of_return(NewDate date_of_return) {
-        this.date_of_return = date_of_return;
+    public void setDateOfReturn(NewDate dateOfReturn) {
+        this.dateOfReturn = dateOfReturn;
     }
 
     @Override
@@ -59,25 +58,24 @@ public class Order {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return id.equals(order.id) &&
-                id_reader.equals(order.id_reader) &&
-                id_book.equals(order.id_book) &&
-                date_of_issuance.equals(order.date_of_issuance) &&
-                Objects.equals(date_of_return, order.date_of_return);
+                reader.equals(order.reader) &&
+                book.equals(order.book) &&
+                dateOfIssuance.equals(order.dateOfIssuance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, id_reader, id_book);
+        return Objects.hash(id, reader, book, dateOfIssuance);
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", id_reader=" + id_reader +
-                ", id_book=" + id_book +
-                ", date_of_issuance=" + date_of_issuance +
-                ", date_of_return=" + date_of_return +
+                ", reader=" + reader +
+                ", book=" + book +
+                ", dateOfIssuance=" + dateOfIssuance +
+                ", dateOfReturn=" + dateOfReturn +
                 '}';
     }
 }
