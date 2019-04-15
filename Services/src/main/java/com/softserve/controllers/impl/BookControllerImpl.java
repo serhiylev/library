@@ -1,7 +1,6 @@
 package com.softserve.controllers.impl;
 
 import com.softserve.controllers.BookController;
-import com.softserve.dao.BookDao;
 import com.softserve.dao.impl.BookDaoImpl;
 import com.softserve.entity.Book;
 
@@ -12,26 +11,34 @@ public class BookControllerImpl implements BookController {
     public void createBook(Book book) {
         BookDaoImpl bookDao = new BookDaoImpl();
         bookDao.getConnection();
-
+        bookDao.createBook(book);
     }
 
     @Override
     public List<Book> retrieveAllBooks() {
-        return null;
+        BookDaoImpl bookDao = new BookDaoImpl();
+        bookDao.getConnection();
+        return bookDao.retrieveAllBooks();
     }
 
     @Override
     public Book retrieveBook(Integer id) {
-        return null;
+        BookDaoImpl bookDao = new BookDaoImpl();
+        bookDao.getConnection();
+        return bookDao.retrieveBook(id);
     }
 
     @Override
     public void updateBook(Book book) {
-        return;
+        BookDaoImpl bookDao = new BookDaoImpl();
+        bookDao.getConnection();
+        bookDao.updateBook(book);
     }
 
     @Override
     public void deleteBook(Book book) {
-
+        BookDaoImpl bookDao = new BookDaoImpl();
+        bookDao.getConnection();
+        bookDao.deleteBook(book);
     }
 }
