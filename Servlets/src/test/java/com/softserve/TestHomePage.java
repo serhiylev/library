@@ -1,5 +1,6 @@
 package com.softserve;
 
+import com.softserve.servlets.HomePage;
 import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;
 
