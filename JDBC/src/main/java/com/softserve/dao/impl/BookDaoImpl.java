@@ -71,7 +71,6 @@ public class BookDaoImpl implements BookDao {
             }
             e.printStackTrace();
         }
-
         return books;
     }
 
