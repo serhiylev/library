@@ -12,7 +12,7 @@ public class BookDaoImpl implements BookDao {
 
     private Connection connection;
 
-    private void getConnection(){
+    public void getConnection(){
         try {
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
@@ -26,7 +26,6 @@ public class BookDaoImpl implements BookDao {
     public void createBook(Book book) {
         try {
             connection.setAutoCommit(false);
-            getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO book (ID,NAME,RELEASE_DATE,AVAILABLE) VALUES (NULL,?,?,?)");
             preparedStatement.setString(1, book.getName());
             preparedStatement.setDate(2, book.getReleaseDate());

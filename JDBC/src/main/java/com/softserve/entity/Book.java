@@ -1,6 +1,5 @@
 package com.softserve.entity;
 
-import java.io.Serializable;
 
 import java.sql.Date;
 import java.util.Objects;
