@@ -78,7 +78,6 @@ public class BookDaoImpl implements BookDao {
     public Book retrieveBook(int id) {
         Book book = null;
         List<Book> books = retrieveAllBooks();
-        getConnection();
         for (Book b : books) {
             if (b.getId() == id) {
                 book = b;

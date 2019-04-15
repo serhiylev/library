@@ -29,7 +29,6 @@ public class OrderDaoImpl implements OrderDao {
     public void createOrder(Order order) {
         try {
             connection.setAutoCommit(false);
-            getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO order (ID,ID_READER,ID_BOOK,DATE_OF_ISSUANCE,DATE_OF_RETURN) VALUES (NULL,?,?,?,?)");
             preparedStatement.setInt(1, order.getReader().getId());
             preparedStatement.setInt(2, order.getBook().getId());
