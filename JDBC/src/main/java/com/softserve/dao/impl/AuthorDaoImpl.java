@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AuthorDaoImpl implements AuthorDao {
- public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
+ public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&user=root&password=admin";
     Connection connection;
 
     public void getConnection(){
@@ -118,12 +118,24 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public void deleteAuthor(int id) {
-        String sql = "delete from authors where ID = ?";
+        String sql1 = "delete book from book join list_of_author on book.ID = list_of_author.book_id where id_author = ?;";
+        String sql2 = "SET FOREIGN_KEY_CHECKS=0;delete orders from orders right join BOOK on BOOK.ID = orders.ID_BOOK where BOOK.ID is null;";
+        String sql3 = "delete list_of_author from list_of_author where id_author = ?;";
+        String sql4 = "delete authors from authors where ID = ?;SET FOREIGN_KEY_CHECKS=1;";
         try {
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql2);
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql3);
+            preparedStatement2.setInt(1, id);
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+            preparedStatement1.setInt(1, id);
+            PreparedStatement preparedStatement3 = connection.prepareStatement(sql4);
+            preparedStatement3.setInt(1, id);
             preparedStatement.executeUpdate();
+            preparedStatement1.executeUpdate();
+            preparedStatement2.executeUpdate();
+            preparedStatement3.executeUpdate();
             System.out.println("Record deleted successfully");
             connection.commit();
         } catch (SQLException e) {
