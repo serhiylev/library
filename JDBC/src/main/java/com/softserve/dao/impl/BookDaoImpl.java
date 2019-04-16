@@ -15,7 +15,7 @@ public class BookDaoImpl implements BookDao {
 
     public void getConnection() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -129,4 +129,26 @@ public class BookDaoImpl implements BookDao {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void deleteBookById(Integer id) {
+        String sql = "delete from book where ID = ?";
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+            System.out.println("Record deleted successfully");
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("Connection error!");
+            }
+            e.printStackTrace();
+        }
+    }
+
 }

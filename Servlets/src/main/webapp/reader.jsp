@@ -16,7 +16,7 @@
     <jsp:include page="header.jsp"/>
 </div>
 <div>
-    <form method="post" action="create-reader">
+    <form method="post" action="create_reader">
         <h2>Create reader</h2>
             <input type="text" name="ID" placeholder="ID">
             <input type="text" name="FIRSTNAME" placeholder="FIRSTNAME">
@@ -25,13 +25,13 @@
         <button class="button" type="submit"></button>
     </form>
 
-    <form method="post" action="delete-reader">
+    <form method="post" action="reader">
         <h2>Delete reader</h2>
         <input type="text" name="ID" placeholder="ID">
         <button class="button" type="submit"></button>
     </form>
 
-    <form method="post" action="update-reader">
+    <form method="post" action="update_reader">
         <h2>Update reader</h2>
             <input type="text" name="ID" placeholder="ID">
             <input type="text" name="FIRSTNAME" placeholder="FIRSTNAME">

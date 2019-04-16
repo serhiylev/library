@@ -1,6 +1,7 @@
 package com.softserve.dao.impl;
 
 import com.softserve.entity.Book;
+import org.junit.Test;
 
 public class BookDaoImplTest {
     Book bookTemplate;
@@ -56,5 +57,12 @@ public class BookDaoImplTest {
 
         BookDaoImpl bookDao = new BookDaoImpl();
         bookDao.deleteBook(bookTemplate);
+    }*/
+
+    /*@Test
+    public void deteteBookByIdTest(){
+        BookDaoImpl bookDao = new BookDaoImpl();
+        bookDao.getConnection();
+        bookDao.deleteBookById(10);
     }*/
 }
