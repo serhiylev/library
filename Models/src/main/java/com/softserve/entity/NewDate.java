@@ -1,4 +1,4 @@
-package com.softserve.addition;
+package com.softserve.entity;
 
 import java.sql.Date;
 

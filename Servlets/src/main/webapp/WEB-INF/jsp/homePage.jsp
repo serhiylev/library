@@ -11,9 +11,9 @@
     <title>Home page</title>
 </head>
 <body>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+<div>
+    <ul>
+        <li>
             <a href="book">Book</a>
         </li>
         <li>

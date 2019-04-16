@@ -2,19 +2,15 @@
   Created by IntelliJ IDEA.
   User: Oleksandr
   Date: 16.04.2019
-  Time: 2:25
+  Time: 3:05
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home page</title>
+    <title>author</title>
 </head>
 <body>
-<div id="header">
-    <jsp:include page="WEB-INF/jsp/homePage.jsp"/>
-</div>
 
 </body>
 </html>
