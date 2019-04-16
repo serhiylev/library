@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AuthorDaoImpl implements AuthorDao {
-    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
+ public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
     Connection connection;
 
     public void getConnection(){
@@ -30,7 +30,7 @@ public class AuthorDaoImpl implements AuthorDao {
     public void createAuthor(Author author) {
         try {
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO author (ID,FIRSTNAME,LASTNAME,AGE) VALUES (NULL,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO authors (ID,FIRSTNAME,LASTNAME,AGE) VALUES (NULL,?,?,?)");
             preparedStatement.setString(1, author.getFirstName());
             preparedStatement.setString(2, author.getLastName());
             preparedStatement.setInt(3, author.getAge());
@@ -54,7 +54,7 @@ public class AuthorDaoImpl implements AuthorDao {
         try {
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM author");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM authors");
 
             Author author;
             while (resultSet.next()) {
@@ -63,6 +63,7 @@ public class AuthorDaoImpl implements AuthorDao {
                 author.setFirstName(resultSet.getString("FIRSTNAME"));
                 author.setLastName(resultSet.getString("LASTNAME"));
                 author.setAge(resultSet.getInt("AGE"));
+                authors.add(author);
             }
             resultSet.close();
             statement.close();
@@ -94,7 +95,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public void updateAuthor(Author author) {
-        String sql = "update author set FIRSTNAME = ?, LASTNAME = ?, AGE = ? where ID = ?";
+        String sql = "update authors set FIRSTNAME = ?, LASTNAME = ?, AGE = ? where ID = ?";
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -116,12 +117,12 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public void deleteAuthor(Author author) {
-        String sql = "delete from author where ID = ?";
+    public void deleteAuthor(int id) {
+        String sql = "delete from authors where ID = ?";
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, author.getId());
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             System.out.println("Record deleted successfully");
             connection.commit();
