@@ -1,5 +1,8 @@
 package com.softserve.servlets;
 
+import com.softserve.controllers.AuthorService;
+import com.softserve.controllers.impl.AuthorServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +15,16 @@ public class AuthorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("author.jsp").forward(request,response);
+        AuthorService authorService = new AuthorServiceImpl();
+        request.setAttribute("authors", authorService.retrieveAllAuthors());
+        request.getRequestDispatcher("author.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        AuthorService authorService = new AuthorServiceImpl();
+        Integer id = Integer.valueOf(request.getParameter("ID"));
+        authorService.deleteAuthorById(id);
+        response.sendRedirect("/author");
     }
 }

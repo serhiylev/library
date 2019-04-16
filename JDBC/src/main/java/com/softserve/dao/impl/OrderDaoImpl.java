@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
-    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&user=root&password=root2311";
+ public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
     Connection connection;
 
     private void getConnection() {
