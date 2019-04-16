@@ -12,17 +12,20 @@
 </head>
 <body>
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a href="book">Book</a>
-        </li>
-        <li>
-            <a href="reader">Reader</a>
-        </li>
-        <li>
-            <a href="author">Author</a>
-        </li>
-    </ul>
+    <nav>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="book">Book</a>
+            </li>
+            <li>
+                <a href="reader">Reader</a>
+            </li>
+            <li>
+                <a href="author">Author</a>
+            </li>
+        </ul>
+    </nav>
+
 </div>
 </body>
 </html>
