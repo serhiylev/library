@@ -1,6 +1,5 @@
 package com.softserve.dao;
 
-import com.softserve.entity.Book;
 import com.softserve.entity.Order;
 
 import java.util.List;

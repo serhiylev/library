@@ -1,13 +1,12 @@
 package com.softserve.dao.impl;
 
-import com.softserve.addition.NewDate;
 import com.softserve.dao.OrderDao;
 import com.softserve.entity.Book;
+import com.softserve.entity.NewDate;
 import com.softserve.entity.Order;
 import com.softserve.entity.Reader;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

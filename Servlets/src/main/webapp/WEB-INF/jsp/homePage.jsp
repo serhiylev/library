@@ -12,20 +12,17 @@
 </head>
 <body>
 <div>
-    <nav>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a href="book">Book</a>
-            </li>
-            <li>
-                <a href="reader">Reader</a>
-            </li>
-            <li>
-                <a href="author">Author</a>
-            </li>
-        </ul>
-    </nav>
-
+    <ul>
+        <li>
+            <a href="book">Book</a>
+        </li>
+        <li>
+            <a href="reader">Reader</a>
+        </li>
+        <li>
+            <a href="author">Author</a>
+        </li>
+    </ul>
 </div>
 </body>
 </html>

@@ -1,7 +1,5 @@
 package com.softserve.entity;
 
-import com.softserve.addition.NewDate;
-
 import java.util.Objects;
 
 public class Order {
