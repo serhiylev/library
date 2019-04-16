@@ -8,8 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AuthorDaoImpl implements AuthorDao {
-    private static final String CONNECTION_STRING  = "jdbc:mysql://localhost:3306/library?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&user=root&password=admin";
-//    public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=admin";
+ public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
     Connection connection;
 
     public void getConnection(){
