@@ -23,6 +23,6 @@ public class AuthorUpdateServlet extends HttpServlet {
 
         AuthorService authorService = new AuthorServiceImpl();
         authorService.updateAuthor(author);
-        response.sendRedirect(request.getContextPath() +"/book");
+        response.sendRedirect(request.getContextPath() +"/author");
     }
 }
