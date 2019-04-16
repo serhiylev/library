@@ -9,17 +9,22 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BookDaoImpl implements BookDao {
-    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=admin";
+    public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
 
     private Connection connection;
 
-    public void getConnection(){
+    public void getConnection() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         try {
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
-
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
     }
 
@@ -49,7 +54,6 @@ public class BookDaoImpl implements BookDao {
     public List<Book> retrieveAllBooks() {
         List<Book> books = new LinkedList<>();
         try {
-            connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM book");
             Book book;
@@ -63,13 +67,7 @@ public class BookDaoImpl implements BookDao {
             }
             resultSet.close();
             statement.close();
-            connection.commit();
         } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
             e.printStackTrace();
         }
         return books;

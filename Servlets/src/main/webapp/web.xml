@@ -37,4 +37,25 @@
         <servlet-name>ReaderServlet</servlet-name>
         <url-pattern>/reader</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BookUpdateServlet</servlet-name>
+        <servlet-class>com.softserve.servlets.BookUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookUpdateServlet</servlet-name>
+        <url-pattern>/book_update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BookCreateServlet</servlet-name>
+        <servlet-class>com.softserve.servlets.BookCreateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookCreateServlet</servlet-name>
+        <url-pattern>/book_create</url-pattern>
+    </servlet-mapping>
+
+
+
 </web-app>
