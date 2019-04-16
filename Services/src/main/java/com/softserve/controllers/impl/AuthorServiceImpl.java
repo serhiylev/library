@@ -1,12 +1,13 @@
 package com.softserve.controllers.impl;
 
-import com.softserve.controllers.AuthorController;
+import com.softserve.controllers.AuthorService;
 import com.softserve.dao.impl.AuthorDaoImpl;
 import com.softserve.entity.Author;
 
 import java.util.List;
 
-public class AuthorControllerImpl implements AuthorController {
+public class AuthorServiceImpl implements AuthorService {
+
     @Override
     public void createAuthor(Author author) {
         AuthorDaoImpl authorDao = new AuthorDaoImpl();
@@ -15,30 +16,32 @@ public class AuthorControllerImpl implements AuthorController {
     }
 
     @Override
-    public List<Author> retrieveAllBooks() {
+    public List<Author> retrieveAllAuthors() {
         AuthorDaoImpl authorDao = new AuthorDaoImpl();
         authorDao.getConnection();
+        System.out.println(authorDao.retrieveAllAuthors());
         return authorDao.retrieveAllAuthors();
     }
 
     @Override
-    public Author retrieveBook(Integer id) {
+    public Author retrieveAuthor(Integer id) {
         AuthorDaoImpl authorDao = new AuthorDaoImpl();
         authorDao.getConnection();
         return authorDao.retrieveAuthor(id);
     }
 
     @Override
-    public void updateBook(Author author) {
+    public void updateAuthor(Author author) {
         AuthorDaoImpl authorDao = new AuthorDaoImpl();
         authorDao.getConnection();
         authorDao.updateAuthor(author);
     }
 
     @Override
-    public void deleteBook(Author author) {
+    public void deleteAuthorById(int id) {
         AuthorDaoImpl authorDao = new AuthorDaoImpl();
         authorDao.getConnection();
-        authorDao.deleteAuthor(author);
+        authorDao.deleteAuthor(id);
     }
+
 }
