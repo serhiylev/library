@@ -1,13 +1,13 @@
 package com.softserve.controllers.impl;
 
-import com.softserve.controllers.BookController;
+import com.softserve.controllers.BookService;
 import com.softserve.dao.impl.BookDaoImpl;
 import com.softserve.entity.Book;
 
 import java.util.List;
 
 
-public class BookControllerImpl implements BookController {
+public class BookServiceImpl implements BookService {
     @Override
     public void createBook(Book book) {
         BookDaoImpl bookDao = new BookDaoImpl();

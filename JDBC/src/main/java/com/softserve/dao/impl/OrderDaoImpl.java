@@ -11,10 +11,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
-    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=admin";
+    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
     Connection connection;
 
     private void getConnection() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         try {
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);

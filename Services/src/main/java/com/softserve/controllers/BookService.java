@@ -3,7 +3,7 @@ package com.softserve.controllers;
 import com.softserve.entity.Book;
 import java.util.List;
 
-public interface BookController {
+public interface BookService {
     void createBook(Book book);
 
     List<Book> retrieveAllBooks();

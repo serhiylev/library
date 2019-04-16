@@ -15,6 +15,11 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
 
     private void getConnection() {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
             if (connection == null)
                 connection = DriverManager.getConnection(CONNECTION_STRING);
         } catch (SQLException e) {
