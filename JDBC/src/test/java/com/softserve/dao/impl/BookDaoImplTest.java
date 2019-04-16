@@ -1,15 +1,11 @@
 package com.softserve.dao.impl;
 
-import com.softserve.addition.NewDate;
 import com.softserve.entity.Book;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class BookDaoImplTest {
     Book bookTemplate;
 
-    @Test
+    /*@Test
     public void createBook() {
         BookDaoImpl bookDao = new BookDaoImpl();
         bookTemplate = new Book();
@@ -60,5 +56,5 @@ public class BookDaoImplTest {
 
         BookDaoImpl bookDao = new BookDaoImpl();
         bookDao.deleteBook(bookTemplate);
-    }
+    }*/
 }

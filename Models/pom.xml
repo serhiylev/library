@@ -9,10 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Services</artifactId>
+    <artifactId>Models</artifactId>
 
-
-    <name>Services</name>
+    <name>Models</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -28,24 +27,6 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.softserve</groupId>
-            <artifactId>JDBC</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.softserve</groupId>
-            <artifactId>model</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.softserve</groupId>
-            <artifactId>Models</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
