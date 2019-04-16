@@ -12,4 +12,29 @@
         <servlet-name>StartServlet</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AuthotServlet</servlet-name>
+        <servlet-class>com.softserve.servlets.AuthorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthotServlet</servlet-name>
+        <url-pattern>/author</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BookServlet</servlet-name>
+        <servlet-class>com.softserve.servlets.BookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookServlet</servlet-name>
+        <url-pattern>/book</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReaderServlet</servlet-name>
+        <servlet-class>com.softserve.servlets.ReaderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReaderServlet</servlet-name>
+        <url-pattern>/reader</url-pattern>
+    </servlet-mapping>
 </web-app>
