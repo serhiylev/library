@@ -64,6 +64,7 @@ public class ReaderDaoImpl implements ReaderDao {
                 reader.setFirstName(resultSet.getString("FIRSTNAME"));
                 reader.setLastName(resultSet.getString("LASTNAME"));
                 reader.setAge(resultSet.getInt("AGE"));
+                readers.add(reader);
             }
             resultSet.close();
             statement.close();
