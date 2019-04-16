@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ReaderDaoImpl implements ReaderDao {
-    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?user=root&password=root";
+    public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&user=root&password=root2311";
     Connection connection;
 
 
@@ -126,6 +126,27 @@ public class ReaderDaoImpl implements ReaderDao {
             preparedStatement.executeUpdate();
             System.out.println("Record deleted");
             connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("Connection error!");
+            }
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteReaderById(Integer id) {
+        String sql = "delete from reader where ID = ?";
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+            System.out.println("Record deleted successfully");
+
         } catch (SQLException e) {
             try {
                 connection.rollback();
