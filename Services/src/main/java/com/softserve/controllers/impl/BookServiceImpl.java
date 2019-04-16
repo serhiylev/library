@@ -42,4 +42,11 @@ public class BookServiceImpl implements BookService {
         bookDao.getConnection();
         bookDao.deleteBook(book);
     }
+
+    @Override
+    public void deleteBookById(int id) {
+        BookDaoImpl bookDao = new BookDaoImpl();
+        bookDao.getConnection();
+        bookDao.deleteBookById(id);
+    }
 }

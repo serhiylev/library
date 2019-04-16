@@ -16,7 +16,7 @@
     <jsp:include page="header.jsp"/>
 </div>
 <div>
-    <form method="post" action="create-author">
+    <form method="post" action="create_author">
         <h2>Create author</h2>
             <input type="text" name="ID" placeholder="ID">
             <input type="text" name="FIRSTNAME" placeholder="FIRSTNAME">
@@ -25,13 +25,13 @@
         <button class="button" type="submit"></button>
     </form>
 
-    <form method="post" action="delete-author">
+    <form method="post" action="author">
         <h2>Delete author</h2>
         <input type="text" name="ID" placeholder="ID">
         <button class="button" type="submit"></button>
     </form>
 
-    <form method="post" action="update-author">
+    <form method="post" action="update_author">
         <h2>Update author</h2>
             <input type="text" name="ID" placeholder="ID">
             <input type="text" name="FIRSTNAME" placeholder="FIRSTNAME">

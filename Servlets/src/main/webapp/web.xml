@@ -44,7 +44,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>BookUpdateServlet</servlet-name>
-        <url-pattern>/book_update</url-pattern>
+        <url-pattern>/update-book</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -53,7 +53,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>BookCreateServlet</servlet-name>
-        <url-pattern>/book_create</url-pattern>
+        <url-pattern>/book-create</url-pattern>
     </servlet-mapping>
 
 

@@ -17,28 +17,26 @@
     <jsp:include page="header.jsp"/>
 </div>
 <div>
-    <form method="post" action="create-book">
+    <form method="post" action="book-create">
         <h2>Create book</h2>
-            <input type="text" name="ID" placeholder="ID">
-            <input type="text" name="NAME" placeholder="NAME">
-            <input type="text" name="RELEASE_DATE" placeholder="RELEASE_DATE">
-            <input type="text" name="AVAILABLE" placeholder="AVAILABLE">
-        <button class="button" type="submit"></button>
+            <input type="text" name="id" placeholder="id">
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="release_date" placeholder="release_date">
+        <button class="button" type="submit">Create book</button>
     </form>
 
-    <form method="post" action="delete-book">
+    <form method="post" action="book">
         <h2>Delete book</h2>
-        <input type = "text" name="ID" placeholder="ID">
-        <button class="button" type="submit"></button>
+        <input type = "text" name="id" placeholder="ID">
+        <button class="button" type="submit">Delete book</button>
     </form>
 
     <form method="post" action="update-book">
         <h2>Update book</h2>
-            <input type="text" name="ID" placeholder="ID">
-            <input type="text" name="NAME" placeholder="NAME">
-            <input type="text" name="RELEASE_DATE" placeholder="RELEASE_DATE">
-            <input type="text" name="AVAILABLE" placeholder="AVAILABLE">
-        <button class="button" type="submit"></button>
+            <input type="text" name="id" placeholder="ID">
+            <input type="text" name="name" placeholder="NAME">
+            <input type="text" name="release_date" placeholder="RELEASE_DATE">
+        <button class="button" type="submit">Update book</button>
     </form>
 
     <form class="review">
@@ -63,7 +61,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <button class="button" type="submit"></button>
+        <button class="button" type="submit">Update table</button>
     </form>
 </div>
 
