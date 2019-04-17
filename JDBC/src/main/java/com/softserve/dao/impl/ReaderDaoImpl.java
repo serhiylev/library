@@ -11,6 +11,9 @@ public class ReaderDaoImpl implements ReaderDao {
  public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
     Connection connection;
 
+    public ReaderDaoImpl(){
+        getConnection();
+    }
 
     public void getConnection(){
         try {

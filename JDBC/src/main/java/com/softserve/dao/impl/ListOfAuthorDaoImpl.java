@@ -13,7 +13,12 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
  public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
     Connection connection;
 
-    private void getConnection() {
+    public ListOfAuthorDaoImpl(){
+        getConnection();
+    }
+
+
+    public void getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -24,13 +29,13 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
                 connection = DriverManager.getConnection(CONNECTION_STRING);
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
     }
 
     @Override
     public void createListOfAuthor(ListOfAuthor listOfAuthor) {
         try {
-            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO list_of_author (ID,ID_AUTHOR,BOOK_ID,MAIN_AUTHOR) VALUES (NULL,?,?,?)");
             preparedStatement.setInt(1, listOfAuthor.getAuthor().getId());
             preparedStatement.setInt(2, listOfAuthor.getBook().getId());
@@ -38,13 +43,8 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
             preparedStatement.executeUpdate();
             preparedStatement.close();
             System.out.println("Element added");
-            connection.commit();
         } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
+
             e.printStackTrace();
         }
     }
@@ -53,29 +53,28 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
     public List<ListOfAuthor> retrieveAllListOfAuthor() {
         List<ListOfAuthor> listOfAuthors = new LinkedList<>();
         try {
-            connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM list_of_author ");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM list_of_author;");
             ListOfAuthor listOfAuthor;
             while (resultSet.next()) {
                 listOfAuthor = new ListOfAuthor();
                 listOfAuthor.setId(resultSet.getInt("ID"));
                 listOfAuthor.setMain_author(resultSet.getInt("MAIN_AUTHOR"));
-                Book template = new BookDaoImpl().retrieveBook(resultSet.getInt("BOOK_ID"));
-                Author author = new AuthorDaoImpl().retrieveAuthor(resultSet.getInt("ID_AUTHOR"));
+
+                BookDaoImpl bookDao = new BookDaoImpl();
+                Book template = bookDao.retrieveBook(resultSet.getInt("BOOK_ID"));
+
+                AuthorDaoImpl authorDao = new AuthorDaoImpl();
+                Author author = authorDao.retrieveAuthor(resultSet.getInt("ID_AUTHOR"));
+
                 listOfAuthor.setAuthor(author);
                 listOfAuthor.setBook(template);
                 listOfAuthors.add(listOfAuthor);
             }
             resultSet.close();
             statement.close();
-            connection.commit();
+
         } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
             e.printStackTrace();
         }
         return listOfAuthors;
@@ -95,7 +94,6 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
     public void updateListOfAuthor(ListOfAuthor listOfAuthor) {
         String sql = "update list_of_author set ID_AUTHOR = ?, BOOK_ID = ?, MAIN_AUTHOR = ? where ID = ?";
         try {
-            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, listOfAuthor.getAuthor().getId());
             preparedStatement.setInt(2, listOfAuthor.getBook().getId());
@@ -103,13 +101,8 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
             preparedStatement.setInt(4, listOfAuthor.getId());
             preparedStatement.executeUpdate();
             System.out.println("Database updated successfully");
-            connection.commit();
         } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
+
             e.printStackTrace();
         }
     }
@@ -118,19 +111,13 @@ public class ListOfAuthorDaoImpl implements ListOfAuthorDao {
     public void deleteListOfAuthor(ListOfAuthor listOfAuthor){
         String sql = "delete from list_of_author where BOOK_ID = ? AND ID_AUTHOR = ?";
         try {
-            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, listOfAuthor.getBook().getId());
             preparedStatement.setInt(2, listOfAuthor.getAuthor().getId());
             preparedStatement.executeUpdate();
             System.out.println("Record deleted successfully");
-            connection.commit();
         } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
+
             e.printStackTrace();
         }
     }

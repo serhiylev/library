@@ -19,7 +19,6 @@ public class AuthorServiceImpl implements AuthorService {
     public List<Author> retrieveAllAuthors() {
         AuthorDaoImpl authorDao = new AuthorDaoImpl();
         authorDao.getConnection();
-        System.out.println(authorDao.retrieveAllAuthors());
         return authorDao.retrieveAllAuthors();
     }
 

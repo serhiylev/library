@@ -11,6 +11,10 @@ public class AuthorDaoImpl implements AuthorDao {
  public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
     Connection connection;
 
+    public AuthorDaoImpl() {
+        getConnection();
+    }
+
     public void getConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -29,7 +33,6 @@ public class AuthorDaoImpl implements AuthorDao {
     @Override
     public void createAuthor(Author author) {
         try {
-            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO authors (ID,FIRSTNAME,LASTNAME,AGE) VALUES (NULL,?,?,?)");
             preparedStatement.setString(1, author.getFirstName());
             preparedStatement.setString(2, author.getLastName());
@@ -37,14 +40,8 @@ public class AuthorDaoImpl implements AuthorDao {
             preparedStatement.executeUpdate();
             preparedStatement.close();
             System.out.println("Element added");
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
         }
     }
 
@@ -52,7 +49,6 @@ public class AuthorDaoImpl implements AuthorDao {
     public List<Author> retrieveAllAuthors() {
         List<Author> authors = new LinkedList<>();
         try {
-            connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM authors");
 
@@ -67,14 +63,8 @@ public class AuthorDaoImpl implements AuthorDao {
             }
             resultSet.close();
             statement.close();
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
         }
 
         return authors;
@@ -97,7 +87,6 @@ public class AuthorDaoImpl implements AuthorDao {
     public void updateAuthor(Author author) {
         String sql = "update authors set FIRSTNAME = ?, LASTNAME = ?, AGE = ? where ID = ?";
         try {
-            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, author.getFirstName());
             preparedStatement.setString(2, author.getLastName());
@@ -105,14 +94,8 @@ public class AuthorDaoImpl implements AuthorDao {
             preparedStatement.setInt(4, author.getId());
             preparedStatement.executeUpdate();
             System.out.println("Database updated successfully");
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
         }
     }
 
@@ -120,18 +103,11 @@ public class AuthorDaoImpl implements AuthorDao {
     public void deleteAuthor(int id) {
         String sql = "delete from authors where ID = ?";
         try {
-            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             System.out.println("Record deleted successfully");
-            connection.commit();
         } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                System.out.println("Connection error!");
-            }
             e.printStackTrace();
         }
     }

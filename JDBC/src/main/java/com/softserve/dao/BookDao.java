@@ -18,4 +18,6 @@ public interface BookDao {
     void deleteBook(Book book);
 
     void deleteBookById(Integer id);
+
+    void deleteBookByIdModify(Integer id);
 }

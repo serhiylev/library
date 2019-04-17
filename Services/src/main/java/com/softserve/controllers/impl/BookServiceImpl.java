@@ -47,6 +47,6 @@ public class BookServiceImpl implements BookService {
     public void deleteBookById(int id) {
         BookDaoImpl bookDao = new BookDaoImpl();
         bookDao.getConnection();
-        bookDao.deleteBookById(id);
+        bookDao.deleteBookByIdModify(id);
     }
 }
