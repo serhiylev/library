@@ -1,5 +1,6 @@
 package com.softserve.entity;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class Order {
@@ -7,8 +8,8 @@ public class Order {
     private Integer id;
     private Reader reader;
     private Book book;
-    private NewDate dateOfIssuance;
-    private NewDate dateOfReturn;
+    private Date dateOfIssuance;
+    private Date dateOfReturn;
 
     public Integer getId() {
         return id;
@@ -34,19 +35,19 @@ public class Order {
         this.book = book;
     }
 
-    public NewDate getDateOfIssuance() {
+    public Date getDateOfIssuance() {
         return dateOfIssuance;
     }
 
-    public void setDateOfIssuance(NewDate dateOfIssuance) {
+    public void setDateOfIssuance(Date dateOfIssuance) {
         this.dateOfIssuance = dateOfIssuance;
     }
 
-    public NewDate getDateOfReturn() {
+    public Date getDateOfReturn() {
         return dateOfReturn;
     }
 
-    public void setDateOfReturn(NewDate dateOfReturn) {
+    public void setDateOfReturn(Date dateOfReturn) {
         this.dateOfReturn = dateOfReturn;
     }
 
