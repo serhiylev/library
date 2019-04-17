@@ -119,9 +119,9 @@ public class AuthorDaoImpl implements AuthorDao {
     @Override
     public void deleteAuthor(int id) {
         String sql1 = "delete book from book join list_of_author on book.ID = list_of_author.book_id where id_author = ?;";
-        String sql2 = "SET FOREIGN_KEY_CHECKS=0;delete orders from orders right join BOOK on BOOK.ID = orders.ID_BOOK where BOOK.ID is null;";
+        String sql2 = "delete orders from orders right join BOOK on BOOK.ID = orders.ID_BOOK where BOOK.ID is null;";
         String sql3 = "delete list_of_author from list_of_author where id_author = ?;";
-        String sql4 = "delete authors from authors where ID = ?;SET FOREIGN_KEY_CHECKS=1;";
+        String sql4 = "delete authors from authors where ID = ?;";
         try {
             connection.setAutoCommit(false);
 
