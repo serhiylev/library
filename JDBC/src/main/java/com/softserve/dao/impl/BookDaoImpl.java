@@ -150,5 +150,4 @@ public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/libr
             e.printStackTrace();
         }
     }
-
 }
