@@ -16,4 +16,8 @@ public interface OrderDao {
 
     void deleteOrder(Order order);
 
+    void deleteOrderById(Integer id);
+
+    void deleteOrderByIdReader(Integer id_reader);
+
 }

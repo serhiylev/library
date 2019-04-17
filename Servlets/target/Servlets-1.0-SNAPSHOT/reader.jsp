@@ -19,17 +19,16 @@
 <div>
     <form method="post" action="create-reader">
         <h2>Create reader</h2>
-            <input type="text" name="id" placeholder="ID">
             <input type="text" name="FirstName" placeholder="FIRSTNAME">
             <input type="text" name="LastName" placeholder="LASTNAME">
             <input type="text" name="age" placeholder="AGE">
-        <button class="button" type="submit"></button>
+        <button class="button" type="submit">Create</button>
     </form>
 
     <form method="post" action="reader">
         <h2>Delete reader</h2>
         <input type="text" name="id" placeholder="ID">
-        <button class="button" type="submit"></button>
+        <button class="button" type="submit">Delete</button>
     </form>
 
     <form method="post" action="update-reader">
@@ -38,7 +37,7 @@
             <input type="text" name="FirstName" placeholder="FIRSTNAME">
             <input type="text" name="LastName" placeholder="LASTNAME">
             <input type="text" name="age" placeholder="AGE">
-        <button class="button" type="submit"></button>
+        <button class="button" type="submit">Update Reader</button>
     </form>
 
     <form class="review">
@@ -63,7 +62,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <button class="button" type="submit"></button>
+        <button class="button" type="submit">Update Table</button>
     </form>
 </div>
 </body>

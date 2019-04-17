@@ -11,10 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
- public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?user=root&password=root";
+ public static final String CONNECTION_STRING = "jdbc:mysql://localhost/library?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&user=root&password=root2311";
     Connection connection;
 
-    private void getConnection() {
+    public void getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -33,7 +33,7 @@ public class OrderDaoImpl implements OrderDao {
     public void createOrder(Order order) {
         try {
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO order (ID,ID_READER,ID_BOOK,DATE_OF_ISSUANCE,DATE_OF_RETURN) VALUES (NULL,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders (ID,ID_READER,ID_BOOK,DATE_OF_ISSUANCE,DATE_OF_RETURN) VALUES (NULL,?,?,?,?)");
             preparedStatement.setInt(1, order.getReader().getId());
             preparedStatement.setInt(2, order.getBook().getId());
             preparedStatement.setDate(3, order.getDateOfIssuance());
@@ -58,7 +58,7 @@ public class OrderDaoImpl implements OrderDao {
         try {
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM order");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM orders");
             Order order;
             while (resultSet.next()) {
                 order = new Order();
@@ -101,7 +101,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public void updateOrder(Order order) {
-        String sql = "update order set ID_READER = ?, ID_BOOK = ?, DATE_OF_ISSUANCE = ?, DATE_OF_RETURN = ? where ID = ?";
+        String sql = "update orders set ID_READER = ?, ID_BOOK = ?, DATE_OF_ISSUANCE = ?, DATE_OF_RETURN = ? where ID = ?";
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -125,11 +125,53 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public void deleteOrder(Order order) {
-        String sql = "delete from order where ID = ?";
+        String sql = "delete from orders where ID = ?";
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, order.getId());
+            preparedStatement.executeUpdate();
+            connection.commit();
+            System.out.println("Record deleted successfully");
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("Connection error!");
+            }
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteOrderById(Integer id) {
+        String sql = "delete from orders where ID = ?";
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+            System.out.println("Record deleted successfully");
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("Connection error!");
+            }
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteOrderByIdReader(Integer id_reader) {
+        String sql = "delete from orders where ID_READER = ?";
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id_reader);
             preparedStatement.executeUpdate();
             connection.commit();
             System.out.println("Record deleted successfully");

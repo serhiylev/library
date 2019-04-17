@@ -19,7 +19,6 @@
 <div>
     <form method="post" action="create-reader">
         <h2>Create reader</h2>
-            <input type="text" name="id" placeholder="ID">
             <input type="text" name="FirstName" placeholder="FIRSTNAME">
             <input type="text" name="LastName" placeholder="LASTNAME">
             <input type="text" name="age" placeholder="AGE">

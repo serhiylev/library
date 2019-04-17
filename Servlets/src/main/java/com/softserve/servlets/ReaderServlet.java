@@ -1,6 +1,8 @@
 package com.softserve.servlets;
 
+import com.softserve.controllers.OrderService;
 import com.softserve.controllers.ReaderService;
+import com.softserve.controllers.impl.OrderServiceImpl;
 import com.softserve.controllers.impl.ReaderServiceImpl;
 
 import javax.servlet.ServletException;
@@ -25,6 +27,8 @@ public class ReaderServlet extends HttpServlet {
         ReaderService readerService = new ReaderServiceImpl();
         Integer id = Integer.valueOf(request.getParameter("id"));
         readerService.deleteReaderById(id);
+        OrderService orderService = new OrderServiceImpl();
+        orderService.deleteOrderByIdReader(id);
         response.sendRedirect("/reader");
     }
 }
