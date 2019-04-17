@@ -11,6 +11,9 @@ public class ReaderDaoImpl implements ReaderDao {
     public static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&user=root&password=admin";
     Connection connection;
 
+    public ReaderDaoImpl(){
+        getConnection();
+    }
 
     public void getConnection(){
         try {

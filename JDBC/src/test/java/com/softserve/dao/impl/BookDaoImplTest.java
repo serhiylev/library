@@ -65,4 +65,15 @@ public class BookDaoImplTest {
         bookDao.getConnection();
         bookDao.deleteBookById(10);
     }*/
+
+    @Test
+    public void retrieveBook() {
+        BookDaoImpl bookDao = new BookDaoImpl();
+        bookDao.getConnection();
+
+        System.out.println(bookDao.retrieveAllBooks());
+        System.out.println(bookDao.retrieveBook(3));
+        System.out.println(bookDao.retrieveBook(2));
+        System.out.println(bookDao.retrieveBook(1));
+    }
 }
